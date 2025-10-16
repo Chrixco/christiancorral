@@ -22,5 +22,6 @@
     "vite"
   ],
   "author": "Christian Corral",
-  "license": "MIT"
+  "license": "UNLICENSED",
+  "private": true
 }
