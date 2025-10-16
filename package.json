@@ -1,0 +1,27 @@
+{
+  "name": "christiancorral",
+  "version": "1.0.0",
+  "description": "Portfolio website for Christian Corral - Architect, Urban Planner, M.Sc., Dr.-Ing., Programmer, Artist",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "npm run build && git add dist -f && git commit -m 'Deploy' && git subtree push --prefix dist origin gh-pages"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  },
+  "dependencies": {
+    "gsap": "^3.12.0"
+  },
+  "keywords": [
+    "portfolio",
+    "architecture",
+    "urban-planning",
+    "gsap",
+    "vite"
+  ],
+  "author": "Christian Corral",
+  "license": "MIT"
+}
