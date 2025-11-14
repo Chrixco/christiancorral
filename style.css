@@ -61,18 +61,8 @@
 .cta-button.cta-orange {
   border-color: var(--accent-orange);
 }
-.cta-button.cta-orange:hover {
-  background: rgba(255, 122, 0, 0.05);
-  box-shadow: 0 10px 24px rgba(255, 122, 0, 0.2);
-  transform: translateY(-2px);
-}
 .cta-button.cta-blue {
   border-color: var(--accent-blue);
-}
-.cta-button.cta-blue:hover {
-  background: rgba(0, 122, 255, 0.05);
-  box-shadow: 0 10px 24px rgba(0, 122, 255, 0.2);
-  transform: translateY(-2px);
 }
 .cta-text { letter-spacing: 0.02em; font-weight: var(--font-weight-medium); }
 
@@ -682,6 +672,10 @@ body {
   will-change: transform;
 }
 
+.glass-button.panel {
+  overflow: visible;
+}
+
 /* Panel content */
 .panel .panel-content {
   display: flex;
@@ -762,6 +756,69 @@ body {
 
 .glass-button.tertiary:hover .button-text {
   color: var(--accent-blue);
+}
+
+/* Panel Tooltips */
+.panel-tooltip {
+  position: absolute;
+  bottom: calc(100% + 1rem);
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: linear-gradient(135deg, rgba(0, 122, 255, 0.95), rgba(255, 122, 0, 0.95));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: clamp(0.75rem, 1.5vh, 1rem) clamp(1rem, 2vw, 1.5rem);
+  border-radius: var(--radius-md);
+  color: #ffffff;
+  font-size: clamp(0.75rem, 1.2vw, 0.875rem);
+  line-height: 1.5;
+  font-weight: var(--font-weight-medium);
+  text-align: center;
+  max-width: 280px;
+  width: max-content;
+  opacity: 0 !important;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+  white-space: normal;
+}
+
+.panel-tooltip::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 8px solid transparent;
+  border-top-color: rgba(255, 122, 0, 0.95);
+}
+
+.glass-button.panel:hover .panel-tooltip {
+  opacity: 1 !important;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Stronger CTA Hover Effects */
+.cta-button.cta-orange:hover {
+  background: linear-gradient(135deg, rgba(255, 122, 0, 0.15), rgba(255, 122, 0, 0.05));
+  box-shadow: 0 15px 40px rgba(255, 122, 0, 0.4), 0 0 0 3px rgba(255, 122, 0, 0.2);
+  transform: translateY(-4px) scale(1.02);
+  border-color: var(--accent-orange);
+}
+
+.cta-button.cta-blue:hover {
+  background: linear-gradient(135deg, rgba(0, 122, 255, 0.15), rgba(0, 122, 255, 0.05));
+  box-shadow: 0 15px 40px rgba(0, 122, 255, 0.4), 0 0 0 3px rgba(0, 122, 255, 0.2);
+  transform: translateY(-4px) scale(1.02);
+  border-color: var(--accent-blue);
+}
+
+.cta-button:hover .cta-text {
+  letter-spacing: 0.05em;
+  font-weight: var(--font-weight-semibold);
 }
 
 /* Footer */
@@ -860,6 +917,12 @@ body {
     font-size: clamp(0.8rem, 2vw, 0.9rem);
     height: clamp(80px, 12vh, 120px);
     width: 100%;
+  }
+
+  .panel-tooltip {
+    max-width: 240px;
+    font-size: clamp(0.7rem, 2vw, 0.8rem);
+    padding: clamp(0.6rem, 1.2vh, 0.85rem) clamp(0.85rem, 1.8vw, 1.2rem);
   }
 
   .hero-title {
@@ -970,6 +1033,17 @@ body {
 
   .panel .panel-subtitle {
     font-size: clamp(0.75rem, 2.5vw, 0.85rem);
+  }
+
+  .panel-tooltip {
+    max-width: 200px;
+    font-size: clamp(0.65rem, 2.5vw, 0.75rem);
+    padding: clamp(0.5rem, 1vh, 0.75rem) clamp(0.75rem, 1.5vw, 1rem);
+    bottom: calc(100% + 0.75rem);
+  }
+
+  .panel-tooltip::before {
+    border-width: 6px;
   }
 
   /* About Modal - Mobile */
