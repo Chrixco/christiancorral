@@ -99,6 +99,10 @@ class Wave {
   }
 }
 
+// Hover effects only apply to devices with a precise pointer (mouse/trackpad).
+// Touch devices emulate mouseenter on tap, which leaves elements stuck in a hover state.
+const canHover = window.matchMedia('(hover: hover) and (pointer: fine)');
+
 // DOM elements
 const elements = {
   navbar: document.getElementById('navbar'),
@@ -106,6 +110,7 @@ const elements = {
   heroSubtitle: document.getElementById('hero-subtitle'),
   heroSlogan: document.getElementById('hero-slogan'),
   heroContent: document.querySelector('.hero-content'),
+  heroButtons: document.getElementById('hero-buttons'),
   footer: document.getElementById('footer'),
   socialLinks: document.querySelectorAll('.social-link'),
   glassButtons: document.querySelectorAll('.glass-button'),
@@ -524,13 +529,18 @@ function initAnimations() {
       filter: 'blur(0px)',
       duration: 1.5,
       ease: 'power2.out',
-      delay: 0.1
+      delay: 0.1,
+      // A residual filter on <body> turns it into the containing block for
+      // position: fixed children, which detaches the navbar when the page scrolls.
+      clearProps: 'filter'
     }
   );
 }
 
 // Hover effects for interactive elements
 function initHoverEffects() {
+  if (!canHover.matches) return;
+
   // Social links hover effects
   elements.socialLinks.forEach(link => {
     const icon = link.querySelector('.social-icon');
@@ -639,7 +649,7 @@ function initHoverEffects() {
 // Mouse tracking for subtle parallax effects
 function initMouseTracking() {
   document.addEventListener('mousemove', (e) => {
-    if (!isLoaded) return;
+    if (!isLoaded || !canHover.matches) return;
     
     mouseX = (e.clientX / window.innerWidth) - 0.5;
     mouseY = (e.clientY / window.innerHeight) - 0.5;
@@ -686,7 +696,8 @@ function initScrollEffects() {
     }
   });
 
-  // Hero elements scroll parallax
+  // Hero elements scroll parallax (desktop only; on mobile the page scrolls normally)
+  if (!canHover.matches) return;
   gsap.to(elements.heroTitle, {
     yPercent: -50,
     ease: 'none',
@@ -707,8 +718,9 @@ elements.glassButtons.forEach(button => {
     const ripple = document.createElement('div');
     const rect = button.getBoundingClientRect();
     const size = Math.max(rect.width, rect.height);
-    const x = e.clientX - rect.left - size / 2;
-    const y = e.clientY - rect.top - size / 2;
+    const hasPointer = e.clientX || e.clientY;
+    const x = (hasPointer ? e.clientX - rect.left : rect.width / 2) - size / 2;
+    const y = (hasPointer ? e.clientY - rect.top : rect.height / 2) - size / 2;
     
     ripple.style.cssText = `
       position: absolute;
@@ -766,7 +778,7 @@ window.addEventListener('load', () => {
   // Add a subtle entrance glow to the entire page
   gsap.fromTo('body',
     { boxShadow: 'inset 0 0 100px rgba(0, 119, 255, 0.1)' },
-    { boxShadow: 'inset 0 0 0px rgba(0, 119, 255, 0)', duration: 2, ease: 'power2.out' }
+    { boxShadow: 'inset 0 0 0px rgba(0, 119, 255, 0)', duration: 2, ease: 'power2.out', clearProps: 'boxShadow' }
   );
 });
 

@@ -19,9 +19,11 @@
   cursor: pointer;
   transition: transform var(--transition-normal), box-shadow var(--transition-normal);
 }
-.hero-photo:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 30px rgba(255, 122, 0, 0.3);
+@media (hover: hover) and (pointer: fine) {
+  .hero-photo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(255, 122, 0, 0.3);
+}
 }
 .hero-photo-img {
   width: 100%;
@@ -82,6 +84,7 @@
   align-items: center;
   justify-content: center;
   padding: clamp(5rem, 8vh, 6rem) clamp(2rem, 5vw, 4rem);
+  overscroll-behavior: contain;
   transition: opacity var(--transition-normal);
 }
 
@@ -95,6 +98,8 @@
   max-width: 1100px;
   max-height: clamp(65vh, 70vh, 75vh);
   width: 100%;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
   padding: clamp(3rem, 5vh, 4.5rem) clamp(2.5rem, 5vw, 4rem);
   border-radius: var(--radius-lg);
   overflow-y: auto;
@@ -130,10 +135,12 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.about-close:hover {
-  background: rgba(255, 122, 0, 0.3);
-  transform: rotate(90deg) scale(1.1);
-  box-shadow: 0 6px 20px rgba(255, 122, 0, 0.3);
+@media (hover: hover) and (pointer: fine) {
+  .about-close:hover {
+    background: rgba(255, 122, 0, 0.3);
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 6px 20px rgba(255, 122, 0, 0.3);
+}
 }
 
 .about-modal-content {
@@ -222,9 +229,11 @@
   border-bottom: 1px solid transparent;
 }
 
-.thesis-link:hover {
-  color: var(--accent-orange);
-  border-bottom-color: var(--accent-orange);
+@media (hover: hover) and (pointer: fine) {
+  .thesis-link:hover {
+    color: var(--accent-orange);
+    border-bottom-color: var(--accent-orange);
+}
 }
 
 /* Defrosting animation - blue to orange to normal */
@@ -267,18 +276,6 @@
 }
 
 
-@media (max-width: 768px) {
-  .about-modal {
-    padding: var(--spacing-lg);
-    max-height: 90vh;
-  }
-
-  .about-close {
-    width: 36px;
-    height: 36px;
-    font-size: 1.75rem;
-  }
-}
 /* CSS Custom Properties */
 :root {
   /* Colors */
@@ -340,6 +337,14 @@ html {
   scroll-behavior: smooth;
   height: 100%;
   overflow: hidden;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 body {
@@ -349,6 +354,7 @@ body {
   color: var(--text-primary);
   background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
   height: 100vh;
+  height: 100dvh;
   overflow: hidden;
   letter-spacing: 0.01em;
   position: relative;
@@ -385,9 +391,11 @@ body {
   backface-visibility: hidden;
 }
 
-.floating-letter:hover {
-  color: var(--letter-hover);
-  transform: scale(1.2);
+@media (hover: hover) and (pointer: fine) {
+  .floating-letter:hover {
+    color: var(--letter-hover);
+    transform: scale(1.2);
+}
 }
 
 .floating-letter.animate {
@@ -451,7 +459,7 @@ body {
   right: auto !important;
   transform: translateX(-50%) !important;
   width: 12.5%;
-  min-width: 300px;
+  min-width: min(300px, calc(100vw - 2rem));
   height: 60px;
   border-bottom: 1px solid var(--glass-border);
   border-left: none;
@@ -548,14 +556,18 @@ body {
   border-radius: 50%;
 }
 
-.social-link:hover::before {
-  opacity: 0.1;
+@media (hover: hover) and (pointer: fine) {
+  .social-link:hover::before {
+    opacity: 0.1;
+}
 }
 
-.social-link:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 24px var(--shadow-medium);
-  border-color: var(--accent-blue);
+@media (hover: hover) and (pointer: fine) {
+  .social-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px var(--shadow-medium);
+    border-color: var(--accent-blue);
+}
 }
 
 .social-icon {
@@ -566,13 +578,16 @@ body {
   transition: transform var(--transition-fast);
 }
 
-.social-link:hover .social-icon {
-  transform: scale(1.1);
+@media (hover: hover) and (pointer: fine) {
+  .social-link:hover .social-icon {
+    transform: scale(1.1);
+}
 }
 
 /* Main Content */
 .main-content {
   height: 100vh;
+  height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -706,14 +721,18 @@ body {
   border-radius: var(--radius-lg);
 }
 
-.glass-button:hover::before {
-  opacity: 0.1;
+@media (hover: hover) and (pointer: fine) {
+  .glass-button:hover::before {
+    opacity: 0.1;
+}
 }
 
-.glass-button:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 20px 40px var(--shadow-medium);
-  border-color: var(--accent-blue);
+@media (hover: hover) and (pointer: fine) {
+  .glass-button:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 20px 40px var(--shadow-medium);
+    border-color: var(--accent-blue);
+}
 }
 
 .button-text {
@@ -722,8 +741,10 @@ body {
   transition: color var(--transition-fast);
 }
 
-.glass-button:hover .button-text {
-  color: var(--accent-blue);
+@media (hover: hover) and (pointer: fine) {
+  .glass-button:hover .button-text {
+    color: var(--accent-blue);
+}
 }
 
 .button-glow {
@@ -739,23 +760,31 @@ body {
   opacity: 0;
 }
 
-.glass-button:hover .button-glow {
-  width: 200px;
-  height: 200px;
-  opacity: 0.1;
+@media (hover: hover) and (pointer: fine) {
+  .glass-button:hover .button-glow {
+    width: 200px;
+    height: 200px;
+    opacity: 0.1;
+}
 }
 
 /* Button Variants */
-.glass-button.primary:hover .button-text {
-  color: var(--accent-blue);
+@media (hover: hover) and (pointer: fine) {
+  .glass-button.primary:hover .button-text {
+    color: var(--accent-blue);
+}
 }
 
-.glass-button.secondary:hover .button-text {
-  color: var(--accent-orange);
+@media (hover: hover) and (pointer: fine) {
+  .glass-button.secondary:hover .button-text {
+    color: var(--accent-orange);
+}
 }
 
-.glass-button.tertiary:hover .button-text {
-  color: var(--accent-blue);
+@media (hover: hover) and (pointer: fine) {
+  .glass-button.tertiary:hover .button-text {
+    color: var(--accent-blue);
+}
 }
 
 /* Panel Tooltips */
@@ -795,30 +824,38 @@ body {
   border-top-color: rgba(255, 122, 0, 0.95);
 }
 
-.glass-button.panel:hover .panel-tooltip {
-  opacity: 1 !important;
-  visibility: visible;
-  transform: translateX(-50%) translateY(0);
+@media (hover: hover) and (pointer: fine) {
+  .glass-button.panel:hover .panel-tooltip {
+    opacity: 1 !important;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
 }
 
 /* Stronger CTA Hover Effects */
-.cta-button.cta-orange:hover {
-  background: linear-gradient(135deg, rgba(255, 122, 0, 0.15), rgba(255, 122, 0, 0.05));
-  box-shadow: 0 15px 40px rgba(255, 122, 0, 0.4), 0 0 0 3px rgba(255, 122, 0, 0.2);
-  transform: translateY(-4px) scale(1.02);
-  border-color: var(--accent-orange);
+@media (hover: hover) and (pointer: fine) {
+  .cta-button.cta-orange:hover {
+    background: linear-gradient(135deg, rgba(255, 122, 0, 0.15), rgba(255, 122, 0, 0.05));
+    box-shadow: 0 15px 40px rgba(255, 122, 0, 0.4), 0 0 0 3px rgba(255, 122, 0, 0.2);
+    transform: translateY(-4px) scale(1.02);
+    border-color: var(--accent-orange);
+}
 }
 
-.cta-button.cta-blue:hover {
-  background: linear-gradient(135deg, rgba(0, 122, 255, 0.15), rgba(0, 122, 255, 0.05));
-  box-shadow: 0 15px 40px rgba(0, 122, 255, 0.4), 0 0 0 3px rgba(0, 122, 255, 0.2);
-  transform: translateY(-4px) scale(1.02);
-  border-color: var(--accent-blue);
+@media (hover: hover) and (pointer: fine) {
+  .cta-button.cta-blue:hover {
+    background: linear-gradient(135deg, rgba(0, 122, 255, 0.15), rgba(0, 122, 255, 0.05));
+    box-shadow: 0 15px 40px rgba(0, 122, 255, 0.4), 0 0 0 3px rgba(0, 122, 255, 0.2);
+    transform: translateY(-4px) scale(1.02);
+    border-color: var(--accent-blue);
+}
 }
 
-.cta-button:hover .cta-text {
-  letter-spacing: 0.05em;
-  font-weight: var(--font-weight-semibold);
+@media (hover: hover) and (pointer: fine) {
+  .cta-button:hover .cta-text {
+    letter-spacing: 0.05em;
+    font-weight: var(--font-weight-semibold);
+}
 }
 
 /* Footer */
@@ -843,7 +880,7 @@ body {
   right: auto !important;
   transform: translateX(-50%) !important;
   width: 12.5%;
-  min-width: 300px;
+  min-width: min(300px, calc(100vw - 2rem));
   height: 60px;
   border-top: 1px solid var(--glass-border);
   border-left: none;
@@ -1090,6 +1127,202 @@ body {
     font-size: clamp(0.85rem, 2.5vw, 0.95rem);
     margin-top: 1.25rem;
   }
+}
+
+/* ==========================================================
+   Small screens, touch devices and short viewports
+   The fixed one-screen layout is kept only where it fits;
+   elsewhere the page scrolls and the footer joins the flow.
+   ========================================================== */
+@media (max-width: 768px), (max-height: 640px) {
+  html,
+  body {
+    height: auto;
+    min-height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .navbar {
+    padding: 0.75rem 0;
+    padding-top: max(0.75rem, env(safe-area-inset-top));
+  }
+
+  .nav-container {
+    padding-left: max(var(--spacing-md), env(safe-area-inset-left));
+    padding-right: max(var(--spacing-md), env(safe-area-inset-right));
+  }
+
+  .nav-logo .logo-text {
+    white-space: nowrap;
+  }
+
+  .main-content {
+    height: auto;
+    min-height: 0;
+    flex: 1 0 auto;
+    overflow: visible;
+    padding-top: calc(64px + env(safe-area-inset-top) + var(--spacing-md));
+    padding-bottom: var(--spacing-lg);
+  }
+
+  .hero-container {
+    max-height: none;
+  }
+
+  .footer {
+    position: relative;
+    padding: var(--spacing-md) var(--spacing-md);
+    padding-bottom: max(var(--spacing-md), env(safe-area-inset-bottom));
+    z-index: 2;
+  }
+
+  .footer.minimized {
+    position: fixed;
+  }
+
+  .footer.minimized .footer-text {
+    font-size: 0.75rem;
+    white-space: nowrap;
+  }
+
+  .about-overlay {
+    padding: calc(70px + env(safe-area-inset-top)) var(--spacing-sm) calc(70px + env(safe-area-inset-bottom));
+  }
+
+  .about-modal {
+    max-height: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-content {
+    gap: var(--spacing-md);
+  }
+
+  /* Photo first on narrow screens: identifies the person before the links */
+  .hero-photo {
+    order: -1;
+  }
+
+  .about-close {
+    width: 40px;
+    height: 40px;
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .nav-logo .logo-text {
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-social {
+    gap: 0.5rem;
+  }
+}
+
+/* Phones in landscape: place panels in a row to use horizontal space */
+@media (max-height: 500px) and (orientation: landscape) {
+  .main-content {
+    padding-top: calc(60px + env(safe-area-inset-top) + var(--spacing-sm));
+  }
+
+  .hero-title {
+    font-size: clamp(1.75rem, 6vh + 2vw, 2.5rem);
+  }
+
+  .hero-content {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .hero-buttons {
+    flex-direction: row;
+    align-items: stretch;
+    gap: var(--spacing-sm);
+  }
+
+  .glass-button {
+    min-width: 0;
+    height: auto;
+    min-height: 80px;
+  }
+
+  .hero-photo {
+    order: 0;
+    width: 90px;
+    height: 90px;
+    align-self: center;
+  }
+
+  .hero-cta {
+    flex-direction: row;
+  }
+
+  .cta-button {
+    min-width: 0;
+  }
+}
+
+/* Touch devices: no hover states, no hover tooltips; pressed feedback instead */
+@media (hover: none), (pointer: coarse) {
+  .panel-tooltip {
+    display: none;
+  }
+
+  .glass-button,
+  .cta-button,
+  .social-link,
+  .hero-photo,
+  .about-close {
+    transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .glass-button:active,
+  .cta-button:active,
+  .hero-photo:active {
+    transform: scale(0.97);
+  }
+
+  .glass-button:active {
+    border-color: var(--accent-blue);
+  }
+
+  .cta-button.cta-orange:active {
+    background: rgba(255, 122, 0, 0.12);
+  }
+
+  .cta-button.cta-blue:active {
+    background: rgba(0, 122, 255, 0.12);
+  }
+
+  .social-link:active,
+  .about-close:active {
+    transform: scale(0.92);
+  }
+
+  .floating-letter {
+    pointer-events: none;
+  }
+}
+
+/* Visible focus for keyboard users on all devices */
+.glass-button:focus-visible,
+.cta-button:focus-visible,
+.social-link:focus-visible,
+.about-close:focus-visible,
+.thesis-link:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 3px;
 }
 
 /* Accessibility */
