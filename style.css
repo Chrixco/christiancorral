@@ -895,6 +895,15 @@ body {
   margin: 0;
 }
 
+.about-text.summary {
+  text-align: left;
+}
+
+.footer.minimized .footer-text {
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
 .footer-text {
   text-align: center;
   font-size: 0.875rem;
@@ -1188,10 +1197,7 @@ body {
     position: fixed;
   }
 
-  .footer.minimized .footer-text {
-    font-size: 0.75rem;
-    white-space: nowrap;
-  }
+
 
   .about-overlay {
     padding: calc(70px + env(safe-area-inset-top)) var(--spacing-sm) calc(70px + env(safe-area-inset-bottom));
