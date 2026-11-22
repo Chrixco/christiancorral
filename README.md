@@ -16,7 +16,7 @@ Personal portfolio website showcasing research, practice, and creative work in s
 
 Christian Corral Burau is a researcher and practitioner in sustainable city development under climate change, specialising in socio-spatial resilience in informal settlements of the Global South.
 
-**Proyectual Studio**: [chrixco.github.io/proyectualstudio](https://chrixco.github.io/proyectualstudio/)
+**Proyectual Studio**: [www.proyectualst.com](https://www.proyectualst.com)
 
 ---
 
